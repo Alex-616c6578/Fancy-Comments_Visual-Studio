@@ -1,5 +1,9 @@
 # Fancy Comments
 
+<p align="center">
+  <img src="Assets/FancyCommentsMascot.png" alt="The Fancy Comments mascot: a dashed-line stick figure tipping a top hat, wearing a monocle and carrying a cane" width="220">
+</p>
+
 A Visual Studio extension for writing rich comments in code: Markdown with images, video, audio and links, shown
 in the editor as a single line you can open.
 
@@ -214,10 +218,8 @@ msbuild FancyComments.slnx -restore -warnaserror
 The project is a VisualStudio.Extensibility extension with VSSDK compatibility, running in-process, because the
 inline previews need the in-process editor API.
 
-## Known limitations
+## To Do
 
-- **Don't test on this solution.** Its project folder is also called `FancyComments`, so comments created here
-  would land inside the project. Use a separate test solution.
 - **Copies across Visual Studio windows**: a comment copied in one Visual Studio window and pasted into another
   keeps the same ID. If that happens, delete the pasted copy and paste it again in the same window.
 - **Media shared between comments**: a file is named after the comment that first added it. If that comment is
@@ -225,9 +227,3 @@ inline previews need the in-process editor API.
 - **Warnings refresh on redraw**: after a missing data file is restored, the warning clears the next time that line
   is redrawn, not immediately.
 - **Unknown JSON fields are dropped** when a comment is saved (see [FORMAT.md §5](docs/FORMAT.md#5-comment-json)).
-- **Visual Studio only**: a VS Code version would be a separate extension built to the same format.
-
-## Before publishing
-
-- Set the publisher name and description in `FancyComments/source.extension.vsixmanifest`, which still has the
-  template's placeholders.

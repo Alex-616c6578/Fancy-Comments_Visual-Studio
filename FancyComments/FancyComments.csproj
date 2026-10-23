@@ -20,4 +20,11 @@
   <ItemGroup>
     <InternalsVisibleTo Include="FancyComments.Tests" />
   </ItemGroup>
+
+  <ItemGroup>
+    <!-- The manifest's <License> and <Icon> point at these, so they have to be in the VSIX. -->
+    <Content Include="..\LICENSE.txt" Link="LICENSE.txt" IncludeInVSIX="true" />
+    <!-- Made from Assets/FancyCommentsMascot.png at the repository root: 128px, thicker lines, white tile. -->
+    <Content Include="Resources\FancyCommentsIcon.png" IncludeInVSIX="true" />
+  </ItemGroup>
 </Project>

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="FancyComments.2a439bf5-9630-4fb5-8e69-deeffde02e77" Version="1.0" Language="en-US" Publisher="Publisher name" />
-    <DisplayName>FancyComments</DisplayName>
-    <Description>VisualStudio.Extensibility Extension with VSSDK Compatibility.</Description>
+    <Identity Id="FancyComments.2a439bf5-9630-4fb5-8e69-deeffde02e77" Version="1.0" Language="en-US" Publisher="Alex Nadalin" />
+    <DisplayName>Fancy Comments</DisplayName>
+    <Description xml:space="preserve">Rich Markdown comments in your code: images, video, tables and links, stored in your repository and shown inline in the editor. Teammates without the extension still see a readable one-line comment.</Description>
+    <License>LICENSE.txt</License>
+    <Icon>Resources\FancyCommentsIcon.png</Icon>
+    <Tags>comments, markdown, documentation, images, editor</Tags>
     <Preview>true</Preview>
   </Metadata>
   <Installation ExtensionType="VSSDK+VisualStudio.Extensibility">
@@ -15,10 +18,10 @@
     </InstallationTarget>
   </Installation>
   <Dependencies>
-    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.7.2,)" />
   </Dependencies>
   <Prerequisites>
-    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,)" DisplayName="Visual Studio core editor" />
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.14,)" DisplayName="Visual Studio core editor" />
   </Prerequisites>
   <Assets>
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
