@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="FancyComments/FancyComments.csproj">
+    <Deploy />
+  </Project>
+  <Project Path="FancyComments.Tests/FancyComments.Tests.csproj" />
+</Solution>

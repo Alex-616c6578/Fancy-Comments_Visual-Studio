@@ -1,0 +1,106 @@
+root = true
+
+[*]
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{cs,xaml}]
+indent_size = 4
+
+[*.{csproj,props,targets,slnx,vsixmanifest,json,yml,yaml}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.cs]
+# Layout
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_indent_case_contents = true
+csharp_indent_switch_labels = true
+# Lookup tables like CommentLanguages.ByExtension keep several entries per line.
+csharp_new_line_before_members_in_object_initializers = false
+dotnet_sort_system_directives_first = true
+
+# Namespaces and usings
+csharp_style_namespace_declarations = block_scoped:warning
+csharp_using_directive_placement = outside_namespace:warning
+dotnet_diagnostic.IDE0005.severity = warning # unnecessary using
+
+# Types and language features
+csharp_style_var_for_built_in_types = false:warning
+csharp_style_var_when_type_is_apparent = false:warning
+csharp_style_var_elsewhere = false:warning
+dotnet_style_predefined_type_for_locals_parameters_members = true:warning
+dotnet_style_predefined_type_for_member_access = true:warning
+dotnet_style_qualification_for_field = true:warning
+dotnet_style_qualification_for_property = true:warning
+dotnet_style_qualification_for_method = true:warning
+dotnet_style_qualification_for_event = true:warning
+dotnet_style_readonly_field = true:warning
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
+csharp_prefer_braces = when_multiline:warning
+csharp_style_implicit_object_creation_when_type_is_apparent = true:suggestion
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_style_expression_bodied_properties = true:suggestion
+
+# The ":warning" suffixes above only apply in the IDE; the build needs the rule ids.
+dotnet_diagnostic.IDE0008.severity = warning # use explicit type instead of var
+dotnet_diagnostic.IDE0009.severity = warning # add this.
+dotnet_diagnostic.IDE0011.severity = warning # braces
+dotnet_diagnostic.IDE0040.severity = warning # accessibility modifiers
+dotnet_diagnostic.IDE0044.severity = warning # readonly field
+dotnet_diagnostic.IDE0049.severity = warning # predefined type names
+dotnet_diagnostic.IDE0065.severity = warning # using placement
+dotnet_diagnostic.IDE0160.severity = warning # block-scoped namespace
+dotnet_diagnostic.IDE1006.severity = warning # naming
+
+# Correctness
+dotnet_diagnostic.IDE0051.severity = warning # unused private member
+dotnet_diagnostic.IDE0052.severity = warning # unread private member
+dotnet_diagnostic.IDE0059.severity = warning # unnecessary assignment
+dotnet_diagnostic.IDE0060.severity = warning # unused parameter
+dotnet_diagnostic.CA2007.severity = none     # ConfigureAwait: VS extensions must keep the UI context
+
+# Naming
+dotnet_naming_rule.types_are_pascal.symbols = types
+dotnet_naming_rule.types_are_pascal.style = pascal
+dotnet_naming_rule.types_are_pascal.severity = warning
+dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum, delegate, namespace
+dotnet_naming_style.pascal.capitalization = pascal_case
+
+dotnet_naming_rule.interfaces_start_with_i.symbols = interfaces
+dotnet_naming_rule.interfaces_start_with_i.style = i_prefix
+dotnet_naming_rule.interfaces_start_with_i.severity = warning
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+dotnet_naming_style.i_prefix.required_prefix = I
+dotnet_naming_style.i_prefix.capitalization = pascal_case
+
+# Static readonly and const fields are PascalCase (CommentLanguages.ByExtension); the more specific rule wins.
+dotnet_naming_rule.static_fields_pascal.symbols = static_fields
+dotnet_naming_rule.static_fields_pascal.style = pascal
+dotnet_naming_rule.static_fields_pascal.severity = warning
+dotnet_naming_symbols.static_fields.applicable_kinds = field
+dotnet_naming_symbols.static_fields.required_modifiers = static, readonly
+
+dotnet_naming_rule.const_fields_pascal.symbols = const_fields
+dotnet_naming_rule.const_fields_pascal.style = pascal
+dotnet_naming_rule.const_fields_pascal.severity = warning
+dotnet_naming_symbols.const_fields.applicable_kinds = field
+dotnet_naming_symbols.const_fields.required_modifiers = const
+
+dotnet_naming_rule.private_fields_camel.symbols = private_fields
+dotnet_naming_rule.private_fields_camel.style = camel
+dotnet_naming_rule.private_fields_camel.severity = warning
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+dotnet_naming_style.camel.capitalization = camel_case
+
+# Test methods are written as sentences (Markers_written_in_every_comment_syntax_read_back).
+[FancyComments.Tests/**.cs]
+dotnet_diagnostic.CA1707.severity = none
+dotnet_diagnostic.IDE1006.severity = none

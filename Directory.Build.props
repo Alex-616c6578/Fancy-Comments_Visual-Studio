@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <!-- Report the .editorconfig code style rules in every build, not just in the editor. -->
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <!-- Needed for IDE0005 (unnecessary usings) to run in the build. Missing doc comments aren't enforced. -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+</Project>

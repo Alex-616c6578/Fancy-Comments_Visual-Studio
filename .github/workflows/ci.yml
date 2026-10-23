@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    # The extension builds with Visual Studio's MSBuild (VSSDK targets), so it needs a Windows runner.
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Check formatting
+        run: dotnet format whitespace FancyComments.slnx --verify-no-changes
+
+      # Code style rules from .editorconfig run as part of the build (see Directory.Build.props),
+      # so any warning, style or otherwise, fails CI.
+      - name: Build and lint
+        run: msbuild FancyComments.slnx -restore -p:Configuration=Release -warnaserror -m -nologo -v:minimal
+
+      - name: Test
+        run: dotnet test FancyComments.Tests/FancyComments.Tests.csproj --no-build -c Release --logger trx --results-directory TestResults
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults/*.trx
+          if-no-files-found: ignore
+
+      - name: Upload VSIX
+        uses: actions/upload-artifact@v4
+        with:
+          name: FancyComments-vsix
+          path: FancyComments/bin/Release/net472/FancyComments.vsix
+          if-no-files-found: error

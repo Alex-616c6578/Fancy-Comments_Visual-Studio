@@ -1,0 +1,72 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.ncrunch*
+_ReSharper*/
+*.DotSettings.user
+.idea/
+.vscode/
+
+# Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ll]og/
+[Ll]ogs/
+*.binlog
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Packaged extensions
+*.vsix
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+!**/packages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Tests and coverage
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+coverage*.info
+
+# Visual Studio caches and temp files
+*.cache
+*.tmp
+*.tmp_proj
+*.vspscc
+*.vssscc
+*.pidb
+*.svclog
+*.VC.db
+*.VC.VC.opendb
+ipch/
+*.aps
+*.ilk
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store

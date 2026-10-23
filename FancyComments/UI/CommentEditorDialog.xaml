@@ -1,0 +1,64 @@
+<platform:DialogWindow x:Class="FancyComments.UI.CommentEditorDialog"
+                       x:ClassModifier="internal"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:platform="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
+                       xmlns:shell="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.15.0"
+                       Title="Fancy Comment"
+                       Width="1000" Height="640"
+                       WindowStartupLocation="CenterOwner"
+                       ShowInTaskbar="False"
+                       HasMinimizeButton="False"
+                       Background="{DynamicResource {x:Static shell:VsBrushes.WindowKey}}"
+                       Foreground="{DynamicResource {x:Static shell:VsBrushes.WindowTextKey}}">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Margin="0,0,0,10">
+            <TextBlock Text="Description" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="0,0,8,0" />
+            <TextBox x:Name="DescriptionBox" MaxLength="120" Padding="2" ToolTip="Plain text shown inline in the code editor" />
+        </DockPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,8">
+            <Button Content="Insert media…" Padding="8,2" Margin="0,0,6,0" Click="InsertMedia_Click" />
+            <Button Content="Insert link" Padding="8,2" Margin="0,0,12,0" Click="InsertLink_Click" />
+            <CheckBox x:Name="OptimizeImages"
+                      Content="Optimize images"
+                      IsChecked="True"
+                      VerticalAlignment="Center"
+                      Foreground="{DynamicResource {x:Static shell:VsBrushes.WindowTextKey}}"
+                      ToolTip="Scale images wider than 1600px down and re-compress them, to keep the repository small" />
+            <TextBlock x:Name="AttachStatus" VerticalAlignment="Center" Margin="12,0,0,0" Opacity="0.7" />
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="6" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="Editor"
+                     AcceptsReturn="True"
+                     AcceptsTab="True"
+                     TextWrapping="Wrap"
+                     FontFamily="Consolas"
+                     FontSize="13"
+                     VerticalScrollBarVisibility="Auto" />
+            <GridSplitter Grid.Column="1" Width="6" HorizontalAlignment="Stretch" Background="Transparent" />
+            <Border x:Name="PreviewHost" Grid.Column="2" />
+        </Grid>
+
+        <DockPanel Grid.Row="3" Margin="0,8,0,0" LastChildFill="True">
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                <Button Content="Save" IsDefault="True" Width="80" Margin="0,0,6,0" Click="Save_Click" />
+                <Button Content="Cancel" IsCancel="True" Width="80" />
+            </StackPanel>
+            <TextBlock x:Name="SummaryText" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Opacity="0.7" />
+        </DockPanel>
+    </Grid>
+</platform:DialogWindow>
