@@ -191,6 +191,15 @@ Visual Studio, so it isn't covered by these tests. Check it by hand with F5.
 On GitHub, `.github/workflows/ci.yml` builds the solution and runs the tests on every push and pull request, and
 attaches the built `.vsix` and test results to each run.
 
+### Releasing
+
+Create a release on GitHub with a tag like `v0.2.0`. CI builds and tests that version and attaches
+`FancyComments-0.2.0.vsix` to the release a few minutes later. While the extension is in pre-release, keep tags
+below `v1.0` and tick **Set as a pre-release** on GitHub. The tag sets the extension's version, so there's no
+version to edit in the manifest; each release needs a higher number than the last, or Visual Studio won't treat
+it as an update. Tags must be 2 to 4 numbers (`v0.2`, `v0.2.1`, `v0.2.1.4`), without suffixes like `-beta`.
+Builds that aren't releases are version 0.1.0.
+
 ### Linting
 
 Code style lives in `.editorconfig`, and Visual Studio shows violations as you type. Every build reports them too,

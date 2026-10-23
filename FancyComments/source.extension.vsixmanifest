@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="FancyComments.2a439bf5-9630-4fb5-8e69-deeffde02e77" Version="1.0" Language="en-US" Publisher="Alex Nadalin" />
+    <Identity Id="FancyComments.2a439bf5-9630-4fb5-8e69-deeffde02e77" Version="|%CurrentProject%;GetVsixVersion|" Language="en-US" Publisher="Alex Nadalin" />
     <DisplayName>Fancy Comments</DisplayName>
     <Description xml:space="preserve">Rich Markdown comments in your code: images, video, tables and links, stored in your repository and shown inline in the editor. Teammates without the extension still see a readable one-line comment.</Description>
     <License>LICENSE.txt</License>

@@ -7,7 +7,33 @@
     <UseWPF>true</UseWPF>
 
     <VssdkCompatibleExtension>true</VssdkCompatibleExtension>
+
+    <!--
+      The VSIX version. CI passes ExtensionVersion from the release tag (v0.2.0 -> 0.2.0); other builds get 0.1.0.
+      A separate property, because a value passed with -p (even an empty one) can't be overridden here.
+    -->
+    <VsixVersion>$(ExtensionVersion)</VsixVersion>
+    <VsixVersion Condition="'$(VsixVersion)' == ''">0.1.0</VsixVersion>
   </PropertyGroup>
+
+  <!-- The manifest's Identity Version is "|%CurrentProject%;GetVsixVersion|", which the VSSDK fills in from this target. -->
+  <Target Name="GetVsixVersion" Returns="$(VsixVersion)" />
+
+  <!--
+    The VSSDK only fills in the manifest again when source.extension.vsixmanifest changes, so building a different
+    version alone would package the old one. Remembering the last version and clearing the stale manifest fixes that.
+  -->
+  <Target Name="RefreshVsixVersion" BeforeTargets="DetokenizeVsixManifestFile">
+    <PropertyGroup>
+      <VsixVersionFile>$(IntermediateOutputPath)vsix.version</VsixVersionFile>
+      <LastVsixVersion Condition="Exists('$(VsixVersionFile)')">$([System.IO.File]::ReadAllText('$(VsixVersionFile)').Trim())</LastVsixVersion>
+    </PropertyGroup>
+    <Delete Files="$(IntermediateVsixManifest)" Condition="'$(LastVsixVersion)' != '$(VsixVersion)'" />
+    <WriteLinesToFile File="$(VsixVersionFile)" Lines="$(VsixVersion)" Overwrite="true" WriteOnlyWhenDifferent="true" />
+    <ItemGroup>
+      <FileWrites Include="$(VsixVersionFile)" />
+    </ItemGroup>
+  </Target>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Extensibility.Sdk" Version="17.14.40608" PrivateAssets="all" />
