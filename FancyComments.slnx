@@ -2,5 +2,8 @@
   <Project Path="FancyComments/FancyComments.csproj">
     <Deploy />
   </Project>
+  <Folder Name="/Solution Items/">
+    <File Path="LICENSE.txt" />
+  </Folder>
   <Project Path="FancyComments.Tests/FancyComments.Tests.csproj" />
 </Solution>
